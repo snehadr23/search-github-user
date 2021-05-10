@@ -1,0 +1,21 @@
+nav {
+    height: 5vh;
+}
+
+.pagination {
+    width: max-content;
+    margin: 0 auto;
+    height: 40px;
+    padding-inline-start: 0;
+}
+
+.pagination .page-item {
+    display: inline;
+    list-style-type: none;
+}
+
+.pagination .page-item .page-link{
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+}

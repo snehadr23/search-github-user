@@ -4,50 +4,42 @@ import SearchInput  from '../searchInput/SearchInput';
 import UserList     from '../userList/UserList';
 import SubmitButton from '../submit/SubmitButton';
 import axios        from 'axios';
+import Pagination   from '../pagination/Pagination';
 
 function Search(props) {
     const [username, setUsername] = useState('');
     const [userDtls, setUserDtls] = useState([]);
-    const [userListToDisplay, setUserListToDisplay] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [usersPerPage, setUsersPerPage] = useState(9);
+    const lastUserIndex = currentPage * usersPerPage;
+    const firstUserIndex = lastUserIndex - usersPerPage;
+    let currentUsers = [];
     function submitBtnClickHandler() {
-        console.log('Btn clicked!!');
         axios.get('https://api.github.com/search/users?q=' + username)
         .then(res => {
             console.log('res.data: ', res.data.items);
             setUserDtls(res.data.items);
         })
         .catch(err => {
-            console.log('err: ', err);
             setUserDtls({error: err});
-          })
+        })
     }
     function usernameChangeHandler(e) {
         setUsername(e.target.value);
     }
+    function paginate(pageNumber) {
+        setCurrentPage(pageNumber);
+    }
     useEffect(() => {
-        console.log('userDtls changed');
-        let userListToDisplay = null;
-        userListToDisplay = (
-            userDtls.map((user) => {
-                return <UserList
-                        userDtls = {user}
-                        key = {user.id}/>
-            })
-        )
-        setUserListToDisplay(userListToDisplay);
+        console.log('currentUsers: ', currentUsers);
     }, [userDtls]);
+    currentUsers = userDtls.slice(firstUserIndex, lastUserIndex);
     return (
-        <main>
+        <main className = 'main'>
             <SearchInput change = {(e) => usernameChangeHandler(e)}/>
             <SubmitButton click = {(e) => submitBtnClickHandler(e)}/>
-            <div className = 'user-details'>
-                <p>
-                    <span className = 'user-detail'>Avatar</span>
-                    <span className = 'user-detail'>Username</span>
-                    <span className = 'user-detail'>Type</span>
-                </p>
-                {userListToDisplay}
-            </div>
+            <UserList userDtls = {currentUsers}/>
+            <Pagination totalusers = {userDtls.length} usersPerPage = {usersPerPage} paginate = {paginate}/>
         </main>
     )
 }

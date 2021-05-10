@@ -5,13 +5,24 @@ function UserList(props) {
         return (
             <p>Something went wrong! Please try again later!</p>
         )
+    } else if (props.userDtls.length === 0) {
+        return null;
     } else {
         return (
-            <p>
-                <span className = 'user-detail'>{props.userDtls.avatar_url}</span>
-                <span className = 'user-detail'>{props.userDtls.login}</span>
-                <span className = 'user-detail'>{props.userDtls.type}</span>
-            </p>
+            <div className = 'user-details list-group mb-4 mt-4'>
+                <p className = 'list-group-item'>
+                    <span className = 'user-detail'>Avatar</span>
+                    <span className = 'user-detail'>Username</span>
+                    <span className = 'user-detail'>Type</span>
+                </p>
+                {props.userDtls.map((user) => (
+                    <p key = {user.id}  className = 'list-group-item'>
+                        <span className = 'user-detail'>{user.avatar_url}</span>
+                        <span className = 'user-detail'>{user.login}</span>
+                        <span className = 'user-detail'>{user.type}</span>
+                    </p>
+                ))}
+            </div>
         )
     }
 }

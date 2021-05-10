@@ -2,7 +2,7 @@ import './SubmitButton.css';
 
 function SubmitButton(props) {
     return (
-        <button className = 'btn' onClick = {props.click}>Submit</button>
+        <button className = 'btn btn-primary' onClick = {props.click}>Submit</button>
     )
 }
 
