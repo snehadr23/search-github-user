@@ -1,0 +1,16 @@
+.user-details {
+    margin-top: 2rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.user-details .user-detail {
+    width: 32%;
+    margin: 0.5%;
+    float: left;
+    height: 40px;
+}
+
+.user-details p:first-child {
+    font-weight: 700;
+}
