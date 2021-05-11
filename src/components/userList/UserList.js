@@ -12,7 +12,11 @@ function UserList(props) {
             <div className = 'user-details list-group mb-4 mt-4'>
                 <p className = 'list-group-item'>
                     <span className = 'user-detail'>Avatar</span>
-                    <span className = 'user-detail'>Username</span>
+                    <span className = 'user-detail'>Login
+                        <a onClick = {props.sortUsername}>
+                            <i className = {"fas " + props.sortTypeIcon}></i>
+                        </a>
+                    </span>
                     <span className = 'user-detail'>Type</span>
                 </p>
                 {props.userDtls.map((user) => (

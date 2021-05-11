@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 className = 'text-primary mb-3'>Search Github User</h1>
+        <h1 className = 'text-primary mb-3 mt-4'>Search Github User</h1>
       </header>
       <Search/>
     </div>

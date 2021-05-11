@@ -10,6 +10,11 @@
     height: 30px;
 }
 
+.user-details .user-detail .fas {
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
 .user-details .list-group-item {
     border: none;
     padding-bottom: 0;
