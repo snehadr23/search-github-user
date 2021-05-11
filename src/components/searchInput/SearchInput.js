@@ -2,7 +2,7 @@ import './SearchInput.css';
 
 function SearchInput(props) {
     return(
-        <input type = 'text' placeholder = 'Enter Username....' className = 'search-input' onChange = {props.change}/>
+        <input type = 'text' placeholder = 'Enter Login....' className = 'search-input' onChange = {props.change}/>
     )
 }
 
